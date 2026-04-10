@@ -34,7 +34,7 @@ public class TicketService
         {
             throw new IllegalArgumentException("The concert had already ended");
         }
-        if (amountOfTickets > theConcert.getVenue().getMaxCapacity())
+        if (isSoldOut(amountOfTickets, theConcert))
         {
             throw new IllegalArgumentException("The venue for this concert is full");
         }
@@ -53,7 +53,7 @@ public class TicketService
 
     public boolean isSoldOut(int amountOfTickets, Concert concert)
     {
-        return false;
+        return amountOfTickets <= concert.getVenue().getMaxCapacity();
     }
 
     private void reserveTickets(int amountOfTickets, Concert concert)
